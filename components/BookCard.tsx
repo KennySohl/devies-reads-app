@@ -44,17 +44,17 @@ export default function BookCard({ book }: BookCardProps) {
 
             <div className="flex gap-3">
               <span title="Have Read" className="flex items-center gap-1">
-                <FaBook className="text-blue-600" /> {book.haveRead}
+                <FaBook style={{ color: "#abdee6" }} /> {book.haveRead}
               </span>
               <span
                 title="Currently Reading"
                 className="flex items-center gap-1"
               >
-                <FaBookOpen className="text-green-600" />{" "}
+                <FaBookOpen style={{ color: "#cce2cb" }} />{" "}
                 {book.currentlyReading}
               </span>
               <span title="Want to Read" className="flex items-center gap-1">
-                <FaBookmark className="text-yellow-600" /> {book.wantToRead}
+                <FaBookmark style={{ color: "#f3b0c3" }} /> {book.wantToRead}
               </span>
             </div>
           </div>
