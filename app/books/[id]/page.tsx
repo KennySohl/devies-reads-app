@@ -132,7 +132,7 @@ export default function BookDetailPage() {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
             <div className="md:col-span-1">
-              <div className="relative w-full aspect-[2/3] bg-gray-200 rounded-lg overflow-hidden">
+              <div className="relative w-full aspect-2/3 bg-gray-200 rounded-lg overflow-hidden">
                 {book.coverUrl ? (
                   <Image
                     src={book.coverUrl}
@@ -151,7 +151,7 @@ export default function BookDetailPage() {
 
             <div className="md:col-span-2 flex flex-col gap-6">
               <div>
-                <h1 className="text-4xl  text-[#202528] font-bold mb-2 capitalize">
+                <h1 className="text-4xl  text-[#202528] font-bold mb-2 capitalize-first">
                   {book.name}
                 </h1>
                 <p className="text-lg ">{book.genre}</p>
@@ -198,6 +198,95 @@ export default function BookDetailPage() {
                   {book.description}
                 </p>
               </div>
+              {isLoggedIn && (
+                <div>
+                  <hr className="my-4" />
+                  <h2 className="text-xl text-gray-800 font-semibold mb-3">
+                    Your Shelf
+                  </h2>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => handleShelfStatusChange("wantToRead")}
+                      disabled={updatingShelf}
+                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                        shelfStatus === "wantToRead"
+                          ? "bg-[#f3b0c3] text-gray-800"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      }`}
+                    >
+                      Want to Read
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleShelfStatusChange("currentlyReading")
+                      }
+                      disabled={updatingShelf}
+                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                        shelfStatus === "currentlyReading"
+                          ? "bg-[#cce2cb] text-gray-800"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      }`}
+                    >
+                      Currently Reading
+                    </button>
+                    <button
+                      onClick={() => handleShelfStatusChange("haveRead")}
+                      disabled={updatingShelf}
+                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                        shelfStatus === "haveRead"
+                          ? "bg-[#abdee6] text-gray-800"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      }`}
+                    >
+                      Have Read
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {isLoggedIn && (
+                <div>
+                  <hr className="my-4" />
+                  <h2 className="text-xl text-gray-800 font-semibold mb-3">
+                    Your Rating
+                  </h2>
+                  <div className="flex gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        onClick={() => handleRatingClick(star)}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                        disabled={updatingRating}
+                        className="transition-transform hover:scale-110"
+                      >
+                        <FaStar
+                          className={`text-3xl ${
+                            star <= (hoverRating || userRating)
+                              ? "text-yellow-500"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Login prompt for non-logged-in users */}
+              {!isLoggedIn && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-gray-800">
+                    <button
+                      onClick={() => router.push("/login")}
+                      className="font-semibold underline text-[#5ec3d3] hover:text-[#2a8fbd]"
+                    >
+                      Log in
+                    </button>{" "}
+                    to add this book to your shelf and rate it!
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
