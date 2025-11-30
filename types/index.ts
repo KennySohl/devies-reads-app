@@ -74,3 +74,6 @@ export interface ApiErrorResponse {
   error: string;
   message?: string;
 }
+
+// UI Types
+export type SortOption = "name" | "rating" | "mostRead";
