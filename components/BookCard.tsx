@@ -30,7 +30,7 @@ export default function BookCard({ book }: BookCardProps) {
         </div>
 
         <div className="p-4 flex-1 flex flex-col">
-          <h3 className="font-semibold text-gray-600 text-lg mb-2 line-clamp-1 overflow-hidden capitalize">
+          <h3 className="font-semibold text-gray-600 text-lg mb-2 line-clamp-1 overflow-hidden capitalize-first">
             {book.name}
           </h3>
 

@@ -65,7 +65,7 @@ export default function Home() {
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h1 className="text-4xl font-bold pt-1">Devies Reads</h1>
+          <h1 className="text-4xl font-bold pt-1">Books</h1>
 
           <div className="flex items-center gap-4">
             <label htmlFor="sort" className="font-medium">
